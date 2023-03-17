@@ -37,69 +37,69 @@ Clasa 'MessageService' depinde de abstractizări (protocoalele 'MessageSender' �
 Acest lucru permite o testare, întreținere și extensibilitate mai ușoară a clasei 'MessageService'.
 
 
-    // Definirea protocolului MessageSender, care trebuie sa contina o functie send ce primeste un mesaj si un destinatar
-  protocol MessageSender {
-  func send(message: String, to: String)
-  }
+      // Definirea protocolului MessageSender, care trebuie sa contina o functie send ce primeste un mesaj si un destinatar
+    protocol MessageSender {
+    func send(message: String, to: String)
+    }
 
-  // Implementarea protocolului MessageSender pentru trimiterea de email-uri
-  class EmailSender: MessageSender {
-  // Definirea functiei send ce primeste un mesaj si un destinatar si afiseaza un mesaj de trimitere a unui email
-  func send(message: String, to: String) {
-  print("Sending email to (to): (message)")
-  }
-  }
+      // Implementarea protocolului MessageSender pentru trimiterea de email-uri
+    class EmailSender: MessageSender {
+    // Definirea functiei send ce primeste un mesaj si un destinatar si afiseaza un mesaj de trimitere a unui email
+    func send(message: String, to: String) {
+    print("Sending email to (to): (message)")
+    }
+    }
 
-  // Implementarea protocolului MessageSender pentru trimiterea de SMS-uri
-  class SMSSender: MessageSender {
-  // Definirea functiei send ce primeste un mesaj si un destinatar si afiseaza un mesaj de trimitere a unui SMS
-  func send(message: String, to: String) {
-  print("Sending SMS to (to): (message)")
-  }
-  }
+    // Implementarea protocolului MessageSender pentru trimiterea de SMS-uri
+    class SMSSender: MessageSender {
+    // Definirea functiei send ce primeste un mesaj si un destinatar si afiseaza un mesaj de trimitere a unui SMS
+    func send(message: String, to: String) {
+    print("Sending SMS to (to): (message)")
+    }
+    }
 
-  // Definirea protocolului MessageReceiver, care trebuie sa contina o functie receive ce returneaza un mesaj
-  protocol MessageReceiver {
-  func receive() -> String
-  }
+    // Definirea protocolului MessageReceiver, care trebuie sa contina o functie receive ce returneaza un mesaj
+    protocol MessageReceiver {
+    func receive() -> String
+    }
 
-  // Implementarea protocolului MessageReceiver pentru primirea de email-uri
-  class EmailReceiver: MessageReceiver {
-  // Definirea functiei receive ce returneaza un mesaj de primire a unui email
-  func receive() -> String {
-  return "Email message received"
-  }
-  }
+    // Implementarea protocolului MessageReceiver pentru primirea de email-uri
+    class EmailReceiver: MessageReceiver {
+    // Definirea functiei receive ce returneaza un mesaj de primire a unui email
+    func receive() -> String {
+    return "Email message received"
+    }
+    }
 
-  // Implementarea protocolului MessageReceiver pentru primirea de SMS-uri
-  class SMSReceiver: MessageReceiver {
-  // Definirea functiei receive ce returneaza un mesaj de primire a unui SMS
-  func receive() -> String {
-  return "SMS message received"
-  }
-  }
+    // Implementarea protocolului MessageReceiver pentru primirea de SMS-uri
+    class SMSReceiver: MessageReceiver {
+    // Definirea functiei receive ce returneaza un mesaj de primire a unui SMS
+    func receive() -> String {
+    return "SMS message received"
+    }
+    }
 
-  // Implementarea serviciului de mesagerie ce contine un sender si un receiver
-  class MessageService {
-  // Definirea variabilelor private pentru sender si receiver
-  private let sender: MessageSender
-  private let receiver: MessageReceiver
+    // Implementarea serviciului de mesagerie ce contine un sender si un receiver
+    class MessageService {
+    // Definirea variabilelor private pentru sender si receiver
+    private let sender: MessageSender
+    private let receiver: MessageReceiver
 
-  swift
-  Copy code
-  // Initializarea serviciului de mesagerie cu sender-ul si receiver-ul specificate
-  init(sender: MessageSender, receiver: MessageReceiver) {
-      self.sender = sender
-      self.receiver = receiver
-  }
+    swift
+    Copy code
+    // Initializarea serviciului de mesagerie cu sender-ul si receiver-ul specificate
+    init(sender: MessageSender, receiver: MessageReceiver) {
+        self.sender = sender
+        self.receiver = receiver
+    }
 
-  // Functie ce trimite un mesaj primit prin parametrii la destinatarul specificat
-  func sendMessage(message: String, to: String) {
-      sender.send(message: message, to: to)
-  }
+    // Functie ce trimite un mesaj primit prin parametrii la destinatarul specificat
+    func sendMessage(message: String, to: String) {
+        sender.send(message: message, to: to)
+    }
 
-  // Functie ce primeste un mesaj si il returneaza sub forma de string
-  func receiveMessage() -> String {
-      return receiver.receive()
-  }
-  }
+    // Functie ce primeste un mesaj si il returneaza sub forma de string
+    func receiveMessage() -> String {
+        return receiver.receive()
+    }
+    }

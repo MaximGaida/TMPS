@@ -86,7 +86,7 @@ Acest lucru permite o testare, întreținere și extensibilitate mai ușoară a 
     private let receiver: MessageReceiver
 
     swift
-    Copy code
+    
        // Initializarea serviciului de mesagerie cu sender-ul si receiver-ul specificate
     init(sender: MessageSender, receiver: MessageReceiver) {
         self.sender = sender
